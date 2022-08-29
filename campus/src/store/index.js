@@ -5,13 +5,15 @@ Vue.use(Vuex);
 
 import user from "./user";
 import content from "./content";
+import person from './person'
 // import tab from "./tab"
 // import VueXAlong from 'vuex-along'
 
 export default new Vuex.Store({
    modules:{
        user,
-       content
+       content,
+       person
     //    tab
    },
 //    plugins: [VueXAlong({

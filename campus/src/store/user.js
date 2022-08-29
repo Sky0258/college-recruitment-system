@@ -1,7 +1,6 @@
 import { Promise } from "core-js";
 import {reqUserLogin,reqUserRegister } from "../api";
 const state = {
-    message:""
     // token:localStorage.getItem('TOKEN'),
     // userInfo:{},
     // userInfo1:{},
@@ -51,9 +50,6 @@ const actions = {
     
 }
 const getters = {
-    message(state){
-        return state.message;
-    }
     // token(state){
     //     return state.token;
     // },

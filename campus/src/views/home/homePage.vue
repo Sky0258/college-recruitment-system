@@ -1,22 +1,22 @@
 <template>
   <div class="contain">
-    <div class="one">
+    <div class="one" id="top">
       <!-- 头部导航栏 -->
       <div class="header">
         <span class="left">高校招聘管理系统</span>
         <ul class="right">
-          <li><a href="#">主页</a></li>
-          <li><a href="#">公告</a></li>
-          <li><a href="#">分类</a></li>
-          <li><a href="#">关于我们</a></li>
-          <li><a href="#">个人中心</a></li>
+          <li><a href="#top">主页</a></li>
+          <li><a href="#classify">分类</a></li>
+          <li><a href="#Message">招聘信息</a></li>
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="http://localhost:10010/#/person">个人中心</a></li>
         </ul>
       </div>
       <!-- 主体搜索框 -->
       <div class="main">
         <h1>How Can We Help You?</h1>
         <h2>Search here to get the position you need</h2>
-        <div class="search">
+        <div class="search" id="classify">
           <el-input placeholder="请输入内容" v-model="input">
           </el-input>
           <el-button type="primary" round @click="search">Search</el-button>
@@ -30,66 +30,126 @@
           <li class="left">
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon1.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">校外工作</el-button>
               <span>200条相关信息</span>
-            </div>   
+            </div>  
           </li>
           <li>
             <img src="	https://html.spiderthemes-demos.com/docy/img/new/icon2.png"/>
             <div>
-              <a href="#">校内工作</a>
+              <el-button type="text" @click="seeMore($event)">校内工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li>
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon3.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">教学工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li class="left">
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon4.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">宣传工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li>
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon5.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">技术工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li>
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon6.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">管理工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li class="left bottom">
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon7.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">勤工俭学</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li class="bottom">
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon8.png"/>
             <div>
-              <a href="#">校外工作</a>
+              <el-button type="text" @click="seeMore($event)">写作工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
           <li class="bottom">
             <img src="https://html.spiderthemes-demos.com/docy/img/new/icon9.png"/>
             <div>
-              <a href="#">校内工作</a>
+              <el-button type="text" @click="seeMore($event)">志愿工作</el-button>
               <span>200条相关信息</span>
             </div>   
           </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 主页3招聘信息框 -->
+    <div class="three" id="Message">
+      <h1>Recruitment Information Details</h1>
+      <div class="message" v-for="item in info" :key="item.id">
+        <div class="msgLeft">
+          ID - {{item.id}}
+        </div>
+        <div class="msgRight">
+          <a href="#"><h2>{{item.pdepartment}} | {{item.pclassify}} | {{item.pname}}</h2></a>
+          <div>工作内容：{{item.presponsibility}}</div>
+          <div>工作要求：{{item.prequest}}</div>
+          <div>工作地点：{{item.workSite}}</div>
+          <el-button type="warning" icon="el-icon-star-off" circle size="small" id="star" plain></el-button>
+          <el-button type="primary" size="small" id="submit">立即投递</el-button>
+        </div>  
+      </div>
+      <el-button type="text" id="msgBtn" @click="showMore()">点击查看更多 ></el-button>
+    </div>
+    <!-- 底部信息栏 -->
+    <div class="four" id="about">
+      <div class="footerLeft">
+        <h2>高校招聘管理系统</h2>
+        <span>为解决高校大学生就业、勤工俭学的需求提供支持</span>
+      </div>
+      <div class="footerRight">
+        <ul>
+          <li class="title">Solution</li>
+          <li>
+            <img src="https://html.spiderthemes-demos.com/docy/img/new/smile2.png" alt="">
+            <span>Help Docs</span>
+          </li>
+          <li>
+            <img src="https://html.spiderthemes-demos.com/docy/img/new/doc2.png" alt="">
+            <span>Docbuzz</span>
+          </li>
+          <li>
+            <img src="https://html.spiderthemes-demos.com/docy/img/new/house2.png" alt="">
+            <span>User Frontend</span>
+          </li>
+          <li>
+            <img src="https://html.spiderthemes-demos.com/docy/img/new/bag2.png" alt="">
+            <span>Lightbox</span>
+          </li>
+        </ul>
+        <ul>
+          <li class="title">Support</li>
+          <li>Help Desk</li>
+          <li>Knowledge Base</li>
+          <li>Live Chat</li>
+          <li>Reports</li>
+        </ul>
+        <ul>
+          <li class="title">About Us</li>
+          <li>Testimonials</li>
+          <li>Affiliates</li>
+          <li>Partners</li>
+          <li>Careers</li>
         </ul>
       </div>
     </div>
@@ -97,11 +157,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       input: "",
+      info:[{
+        "id": 5,
+        "workSite": "东华学车",
+        "flag": 2,
+        "pdescribe": "发传单",
+        "pdepartment": "校内",
+        "presponsibility": "发完所分配的传单，并向同学们介绍公司的优惠",
+        "pclassify": "销售",
+        "prequest": "有耐心，认真",
+        "pname": "东华学车宣传员"
+      }
+      ]
     };
+  },
+  created() {
+    // this.getMenuList();
+    this.showAllPosition();
+    this.info = this.allPosition;
   },
   methods: {
     search() {
@@ -113,6 +191,34 @@ export default {
           this.$message.error('错误！');
         });
     },
+    showAllPosition() {
+      this.$store
+        .dispatch("showAllPosition",{
+          page: 1,
+          size: 4
+        })
+        .then(() => {
+        })
+        .catch(() => {
+          this.$message.error('错误！');
+        });
+    },
+    seeMore(event){
+      let val = event.currentTarget.innerHTML.match(/(<span>=?)(\S*)(?=<\/span>)/)[2];
+      this.$store
+        .dispatch("contentSearch", val)
+        .then(() => {
+        })
+        .catch(() => {
+          this.$message.error('错误！');
+      });
+    },
+    showMore(){
+      this.$router.push("/result");
+    }
+  },
+  computed: {
+    ...mapGetters(["allPosition"]),
   },
 };
 </script>
@@ -241,6 +347,8 @@ a {
   position: absolute;
   top: -20%;
   left: 6%;
+  box-shadow: 0 30px 60px 0 rgb(2 2 48 / 8%);
+
 }
 .two ul {
   width: 100%;
@@ -271,13 +379,14 @@ a {
 .two li div {
   margin-left: 0px;
 }
-.two li a {
+.two li .el-button {
   display: block;
   font-weight: 600;
-  margin-top: 42px;
+  margin-top: 33px;
   text-align: left;
   font-size: 18px;
-  margin-bottom: 10px;
+  letter-spacing: 1px;
+  /* margin-bottom: 10px; */
   color: black;
 }
 .two li a:hover {
@@ -286,5 +395,139 @@ a {
 .two span {
   color: #5f6368;
   font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* 主页招聘信息框 */
+.three {
+  width: 100%;
+  height: 161vh;
+  background: url("./images/主页3背景5.png");
+  background-size: 100vw 161vh;
+  margin-top: 30px;
+}
+.three h1 {
+  color: #0d0d75;
+  margin-bottom: 50px;
+}
+.three .message {
+  width: 70%;
+  height: 190px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 30px 0 rgb(2 2 48 / 6%);
+  display: flex;
+  margin-top: 30px;
+  border: 1px solid #e0e0e0;
+}
+.three .msgLeft {
+  width: 120px;
+  height: 65%;
+  border-radius: 67%;
+  background-color: #f4f4fe;
+  margin: 3% 35px 0 50px;
+  font-size: 25px;
+  line-height: 120px;
+  color: #0d0d75;
+}
+.three .msgRight {
+  font-size: 16px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+  width: 640px;
+}
+.three .message a{
+  color: #232361;
+}
+.three .message a:hover {
+  color: #4c4cf1;
+}
+.three .msgRight h2 {
+  margin-top: 25px;
+  text-align: left;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.three .msgRight div {
+  /* font-size: 16px; */
+  float: left;
+  width: 610px;
+  margin-top: 6px;
+  text-align: left;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.three  .msgRight >>> #submit {
+  float: right;
+  margin-right: 20px;
+}
+.three .msgRight >>> #star {
+  margin-right: 80px;
+  float: right;
+  /* background-color: red; */
+}
+.three #msgBtn{
+  color: #4c4cf1;
+  font-weight: 550;
+  font-size: 16px;
+  margin-right: -720px;
+  margin-top: 10px;
+}
+
+/* 底部栏目 */
+.four {
+  width: 100%;
+  height: 60vh;
+  background: url("./images/主页4背景1.png");
+  background-size: 100% 60vh;
+  display: flex;
+}
+.footerLeft {
+  width: 20%;
+  margin: 0 70px;
+  margin-top: 130px;
+}
+.footerLeft h2 {
+  color: #232361;
+}
+.footerLeft span {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  color: #6b7082;
+  font-weight: 600;
+}
+.footerRight {
+  display: flex;
+  margin-top: 110px;
+}
+.footerRight ul {
+  margin-left: 50px;
+}
+.footerRight li {
+  margin-top: 20px;
+  width: 200px;
+  text-align: left;
+  display: flex;
+  color: #6c7688;
+}
+.footerRight img {
+  /* display: block; */
+  margin: 0px;
+  margin-right: 18px;
+  width: 20px;
+  height: 20px;
+  /* margin-top: 15px; */
+}
+.footerRight  ul span {
+  margin: 0;
+  color: #6c7688;
+}
+.footerRight ul .title {
+  font-size: 18px;
+  color: #232361;
+  font-weight: 600;
+  text-align: center;
 }
 </style>

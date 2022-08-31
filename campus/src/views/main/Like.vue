@@ -1,13 +1,8 @@
 <template>
   <div class="box">
-    <!-- 搜索框 -->
-    <div class="main">
-      <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button>
-      <div class="search">
-        <!-- <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button> -->
-        <el-input placeholder="请输入内容" v-model="input"> </el-input>
-        <el-button type="primary" round @click="search()">Search</el-button>
-      </div>
+    <div class="header">
+    <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button>
+    <div class="title">收藏列表</div>
     </div>
     <!-- 信息框 -->
     <div class="three">
@@ -23,13 +18,12 @@
           <div>工作要求：{{ item.prequest }}</div>
           <div>工作地点：{{ item.pworkSite }}</div>
           <el-button
-            type="warning"
+            type="danger"
             icon="el-icon-star-off"
             size="small"
             id="like"
-            @click="likeIt(item)"
-          >收藏</el-button>
-          <el-button type="primary" size="small" id="submit" @click="apply()"
+          >取消收藏</el-button>
+          <el-button type="primary" size="small" id="submit" @click="apply(item.id)"
             >立即投递</el-button
           >
         </div>
@@ -162,34 +156,34 @@ export default {
           pname: "",
         },
       ],
-      dialogVisible1: false,
-      labelStyle: { width: "60px" },
-      totalPage: 1,
-      currentPage1: 1,
-      cur:"",
       ruleForm1: {
         email: "",
         phone: "",
         pid: "",
         username: "",
       },
+      dialogVisible1: false,
+      labelStyle: { width: "60px" },
+      totalPage: 1,
+      currentPage1: 1,
+      cur:"",
       infoDialogVisible: false
     };
   },
   mounted() {
-    this.showAllPosition();
-    this.info = this.allPosition;
+    this.showAllLike();
+    this.info = this.allLike.records;
   },
   methods:{
-    showAllPosition() {
+    showAllLike() {
       this.$store
-        .dispatch("showAllPosition", {
+        .dispatch("showAllLike", {
           page: 1,
           size: 6,
         })
         .then(() => {
-          this.info = this.allPosition;
-          this.totalPage = this.allPosMessage.total;
+          this.info = this.allLike.records;
+          this.totalPage = this.allLike.total;
           console.log(this.totalPage);
         })
         .catch(() => {
@@ -198,12 +192,12 @@ export default {
     },
     handleCurrentChange(val) {
       this.$store
-        .dispatch("showAllPosition", {
+        .dispatch("showAllLike", {
           page: val,
           size: 6,
         })
         .then(() => {
-          this.info = this.allPosition;
+          this.info = this.allLike;
         })
         .catch(() => {
           this.$message.error("错误！");
@@ -213,7 +207,7 @@ export default {
       this.cur = item.id;
       this.dialogVisible1 = true;
     },
-    back() {
+    back(){
       this.$router.push("/homePage");
     },
     likeIt(item) {
@@ -226,19 +220,6 @@ export default {
             message: "收藏成功！",
             type: "success",
           });
-        })
-        .catch(() => {
-          this.$message.error("错误！");
-        });
-    },
-    search() {
-      this.$store
-        .dispatch("contentSearch", {
-          pClassify: this.input,
-        })
-        .then(() => {
-          this.info = this.searchPosition;
-          this.totalPage = 1;
         })
         .catch(() => {
           this.$message.error("错误！");
@@ -274,7 +255,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["allPosition","allPosMessage","searchPosition"]),
+    ...mapGetters(["allLike"]),
   },
 };
 </script>
@@ -291,57 +272,28 @@ a {
   background-position: 70%;
   margin: 0;
 }
-
-/* 搜索框 */
-.main {
-  display: flex;
+/* 标题 */
+.header {
+    display: flex;
 }
-.main >>> .el-button {
-  width: 160px;
-}
-.main i {
+.header i {
   font-size: 20px;
   color: #5f6368;
   float: left;
   margin-right: 420px;
   margin-left: 50px;
 }
-.main i:hover {
+.header i:hover {
   color: #409eff;
 }
-.main .search {
-  display: flex;
-  justify-content: left;
-  margin-top: 1rem;
-  margin: 0;
+.title {
+    line-height: 60px;
+    font-size: 28px;
+    color: #0d0d75;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
-.main .search >>> .el-input {
-  width: 500px;
-  margin: 0 0 0 12rem;
-}
-.main >>> .el-input__inner {
-  width: 100%;
-  height: 2.8rem;
-  border-radius: 2.8rem;
-  border: 1px solid #0d0d75;
-  margin-top: 1rem;
-  margin-bottom: 10px;
-  font-size: 16px;
-  padding-left: 35px;
-}
-.main .search >>> .el-button {
-  height: 2.8rem;
-  border-radius: 2.8rem;
-  width: 100px;
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #0d0d75;
-  border: 0;
-  margin-top: 1rem;
-  margin-left: 10px;
-  margin-bottom: 10px;
-}
-
 /* 招聘信息框 */
 .three {
   display: flex;

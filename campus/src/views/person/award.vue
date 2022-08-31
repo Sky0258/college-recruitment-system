@@ -103,13 +103,6 @@ export default {
   data() {
     return {
       msg: [
-        {
-          id: "",
-          userId: "",
-          awDepartment: "",
-          award: "",
-          awTime: "",
-        },
       ],
       contentStyle: {
         "font-size": "14px",
@@ -158,9 +151,10 @@ export default {
               });
               this.showCampus1();
               this.infoDialogVisible = false;
+              this.resetForm();
             })
             .catch(() => {
-              this.$message.error("错误！");
+              // this.$message.error("错误！");
             });
         } else {
           console.log("error submit!!");
@@ -177,7 +171,10 @@ export default {
             id: awardId
         })
         .then(() => {
-          this.$message.error("删除成功！");
+          this.$message({
+                message: "删除成功！",
+                type: "success",
+              });
           this.showCampus1();
         })
         .catch(() => {

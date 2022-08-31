@@ -2,9 +2,8 @@
   <div class="box">
     <!-- 搜索框 -->
     <div class="main">
-      <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button>
+       <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button>
       <div class="search">
-        <!-- <el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button> -->
         <el-input placeholder="请输入内容" v-model="input"> </el-input>
         <el-button type="primary" round @click="search()">Search</el-button>
       </div>
@@ -162,48 +161,50 @@ export default {
           pname: "",
         },
       ],
-      dialogVisible1: false,
-      labelStyle: { width: "60px" },
-      totalPage: 1,
-      currentPage1: 1,
-      cur:"",
       ruleForm1: {
         email: "",
         phone: "",
         pid: "",
         username: "",
       },
+      dialogVisible1: false,
+      labelStyle: { width: "60px" },
+      totalPage: 1,
+      currentPage1: 1,
+      cur:"",
       infoDialogVisible: false
     };
   },
   mounted() {
-    this.showAllPosition();
-    this.info = this.allPosition;
+    // this.showSearchPosition();
+    this.info = this.searchPosition;
+    // console.log('adsdsssdd');
+    // console.log(this.searchPosition);
   },
   methods:{
-    showAllPosition() {
-      this.$store
-        .dispatch("showAllPosition", {
-          page: 1,
-          size: 6,
-        })
-        .then(() => {
-          this.info = this.allPosition;
-          this.totalPage = this.allPosMessage.total;
-          console.log(this.totalPage);
-        })
-        .catch(() => {
-          this.$message.error("错误！");
-        });
-    },
+    // showSearchPosition() {
+    //   this.$store
+    //     .dispatch("showAllPosition", {
+    //       page: 1,
+    //       size: 6,
+    //     })
+    //     .then(() => {
+    //       this.info = this.allPosition;
+    //       this.totalPage = this.allPosMessage.total;
+    //       console.log(this.totalPage);
+    //     })
+    //     .catch(() => {
+    //       this.$message.error("错误！");
+    //     });
+    // },
     handleCurrentChange(val) {
       this.$store
-        .dispatch("showAllPosition", {
+        .dispatch("contentSearch", {
           page: val,
           size: 6,
         })
         .then(() => {
-          this.info = this.allPosition;
+          this.info = this.searchPosition;
         })
         .catch(() => {
           this.$message.error("错误！");
@@ -237,8 +238,7 @@ export default {
           pClassify: this.input,
         })
         .then(() => {
-          this.info = this.searchPosition;
-          this.totalPage = 1;
+            this.info = this.searchPosition;
         })
         .catch(() => {
           this.$message.error("错误！");
@@ -274,7 +274,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["allPosition","allPosMessage","searchPosition"]),
+    ...mapGetters(["searchPosition"]),
   },
 };
 </script>

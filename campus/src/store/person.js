@@ -1,5 +1,5 @@
 import { Promise } from "core-js";
-import {reqAddCampus, reqSelfInfo,reqShowCampus,reqUpdateInfo,reqDeleteCampus, reqShowEdu, reqAddEdu, reqAddProject, reqShowProject, reqDeleteProject} from "../api";
+import {reqAddCampus, reqSelfInfo,reqShowCampus,reqUpdateInfo,reqDeleteCampus, reqShowEdu, reqAddEdu, reqAddProject, reqShowProject, reqDeleteProject, reqUpload, reqUpload1} from "../api";
 const state = {
     selfInfo:{},
     showCampus:{},
@@ -18,7 +18,7 @@ const mutations = {
     SHOWEDU(state,showEdu){
         state.showEdu = showEdu;
     },
-    SHOWPROJECT(state,showEdu) {
+    SHOWPROJECT(state,showProject) {
         state.showProject = showProject;
     }
 };
@@ -107,6 +107,7 @@ const actions = {
     //展示项目经历
     async showProject({commit}){
         let result = await reqShowProject();
+        console.log('VVVVVVVVVVVVVVVVVVVVVVBBBBBBBBBB');
         console.log(result);
         if(result.data.code == 1){
             commit("SHOWPROJECT",result.data.name);
@@ -130,6 +131,28 @@ const actions = {
     //删除项目经历
     async deleteProject({commit},data){
         let result = await reqDeleteProject(data);
+        console.log(result);
+        if(result.data.code == 1){
+            return 'ok';
+        }else{
+         return Promise.reject(new Error("faile"));
+        }
+    },
+
+    //上传头像
+    async upLoad({commit},data){
+        let result = await reqUpload(data);
+        console.log(result);
+        if(result.data.code == 1){
+            return 'ok';
+        }else{
+         return Promise.reject(new Error("faile"));
+        }
+    },
+
+    //上传附件
+    async upLoad1({commit},data){
+        let result = await reqUpload1(data);
         console.log(result);
         if(result.data.code == 1){
             return 'ok';

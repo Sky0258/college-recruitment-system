@@ -3,7 +3,7 @@
     <el-upload
       class="upload-demo"
       drag
-      action="https://jsonplaceholder.typicode.com/posts/"
+      action="/api/info/uploadResume"
       multiple
     >
       <i class="el-icon-upload"></i>

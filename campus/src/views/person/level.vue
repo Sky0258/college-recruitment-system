@@ -39,7 +39,7 @@
           <el-input v-model="ruleForm1.school"></el-input>
         </el-form-item>
         <el-form-item
-          label="学历"
+          label="学历情况"
           prop="level"
           :rules="{
             required: true,
@@ -115,12 +115,6 @@ export default {
   data() {
     return {
       msg: [
-        {
-          school: "",
-          level: "",
-          fromTime: "",
-          toTime: "",
-        },
       ],
       contentStyle: {
         "font-size": "14px",

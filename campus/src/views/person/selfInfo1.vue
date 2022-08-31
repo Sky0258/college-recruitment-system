@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <!-- <img src="./images/头像2.jpg" alt=""> -->
     <el-descriptions
       class="margin-top"
       :column="1"
@@ -7,13 +8,13 @@
       size="large"
       :labelStyle="labelStyle"
     >
-      <el-descriptions-item>
+      <!-- <el-descriptions-item>
         <template slot="label">
           <i class="el-icon-postcard"></i>
           用户ID
         </template>
         {{ this.ruleForm.id }}
-      </el-descriptions-item>
+      </el-descriptions-item> -->
       <el-descriptions-item>
         <template slot="label">
           <i class="el-icon-user"></i>
@@ -83,6 +84,33 @@
         class="demo-ruleForm"
         hide-required-asterisk
       >
+      <!-- <el-form-item label="用户头像" prop="photo">
+          <el-upload
+            class="avatar-uploader"
+            action="/api/info/uploadResume"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload"
+            v-loading="loading"
+            element-loading-text="加载中"
+          >
+            <img v-if="ruleForm1.photo" :src="ruleForm1.photo" class="avatar" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            <div slot="tip" class="el-upload__tip" style="margin-top:-17px;margin-bottom:-10px">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible3">
+            <img width="100%" :src="dialogImageUrl" alt="" />
+          </el-dialog>
+          <el-upload
+  class="avatar-uploader"
+  action="https://jsonplaceholder.typicode.com/posts/"
+  :show-file-list="false"
+  :on-success="handleAvatarSuccess"
+  :before-upload="beforeAvatarUpload">
+  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+</el-upload>
+        </el-form-item> -->
         <el-form-item
           label="用户名"
           prop="name"
@@ -179,6 +207,9 @@ export default {
       },
       infoDialogVisible: false,
       labelStyle: { width: "110px" },
+      imageUrl: "./images/头像2.jpg",
+      dialogImageUrl: '',
+      dialogVisible3: false
     };
   },
   mounted() {
@@ -217,7 +248,7 @@ export default {
               this.infoDialogVisible = false;
             })
             .catch(() => {
-              this.$message.error('错误！');
+              this.$message.error("错误！");
             });
         } else {
           console.log("error submit!!");
@@ -225,6 +256,35 @@ export default {
         }
       });
     },
+   handleAvatarSuccess(res, file) {
+      console.log('222222222222222');
+      console.log(res);
+      this.ruleForm1.photo = res.data[0];
+      this.ruleForm.photo = res.data[0];
+    },
+    beforeAvatarUpload(file) {
+      console.log(file);
+      const isJPG = file.type === "image/jpeg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isJPG) {
+        this.$message.error("上传头像图片只能是 JPG 格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+      return isJPG && isLt2M;
+    },
+    upLoad(){
+      let data = "https://img-blog.csdnimg.cn/20201014180756923.png?x-oss-process=image/resize,m_fixed,h_64,w_64";
+      // console.log(data);
+      this.$store
+        .dispatch("upLoad",data)
+        .then(() => {
+        })
+        .catch(() => {
+          this.$message.error("错误！");
+        });
+    }
   },
   computed: {
     ...mapGetters(["selfInfo"]),
@@ -234,8 +294,63 @@ export default {
 
 <style scoped>
 .box {
-  width: 75%;
+  width: 70%;
   margin-left: 80px;
-  margin-top: 1%;
+  margin-top: 4%;
 }
+.box img {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  margin-left: -80px;
+  margin-bottom: 5px;
+  margin-top: -13px;
+}
+/* .avatar-uploader >>> .el-upload {
+  border: 1px dashed #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  float: left;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 200px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+}
+.avatar {
+  width: 200px;
+  height: 150px;
+  display: block;
+} */
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 </style>

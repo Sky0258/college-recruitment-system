@@ -10,7 +10,7 @@ export const reqUserLogin = (data)=>requests({url:'/api/user/login',params:data,
 export const reqUserRegister = (data)=>requests({url:'/api/user/register',data,method:'post'});
 
 //搜索接口
-export const reqContentSearch = (data)=>requests({url:'/api/pos/likeByCondition',data,method:'get'});
+export const reqContentSearch = (data)=>requests({url:'/api/pos/likeByCondition',params:data,method:'get'});
 
 //查看全部岗位接口
 export const reqAllPosition = (data)=>requests({url:'/api/pos/showAll',params:data,method:'get'});
@@ -44,6 +44,33 @@ export const reqAddProject = (data)=>requests({url:'/api/project/add',data:data,
 
 //删除项目经历
 export const reqDeleteProject = (data)=>requests({url:'/api/project/delete',params:data,method:'get'});
+
+//申请职位
+export const reqAddWork = (data)=>requests({url:'/api/resume/add',data:data,method:'post'});
+
+//查看已申请职位
+export const reqShowApplyWork = ()=>requests({url:'/api/resume/show',method:'get'});
+
+//根据id查看职位详情信息
+export const reqIdProject = (data)=>requests({url:'/api/pos/selectById',params:data,method:'get'});
+
+//撤销申请
+export const reqDeleteApply = (data)=>requests({url:'/api/resume/delete',params:data,method:'post'});
+
+//上传头像
+export const reqUpload = (data)=>requests({url:'/api/info/uploadPic',data:data,method:'post'});
+
+//上传附件
+export const reqUpload1 = (data)=>requests({url:'/api/info/uploadResume',data:data,method:'post'});
+
+//查看收藏
+export const reqShowLike = (data)=>requests({url:'/api/collection/showAll',params:data,method:'get'});
+
+//收藏信息
+export const reqAddLike = (data)=>requests({url:'/api/collection/add',headers:{header:'/api'},params:data,method:'post'});
+
+
+
 
 
 

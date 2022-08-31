@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header>个人中心</el-header>
+      <el-header><el-button type="text" @click="back()"><i class="el-icon-d-arrow-left"> 返回主页</i></el-button>个人中心</el-header>
        <!-- <el-divider></el-divider> -->
       <el-container>
         <el-aside width="20%"><person-aside></person-aside></el-aside>
@@ -16,6 +16,11 @@ import personAside from './personSide.vue'
 export default {
     components:{
         personAside
+    },
+    methods: {
+      back(){
+        this.$router.push("/homePage");
+      }
     }
 };
 </script>
@@ -46,6 +51,17 @@ export default {
     border-radius: 10px;
     font-weight: 600;
     letter-spacing: 2px;
+    display: flex;
     /* border-bottom: 1px solid #e0e0e0; */
+}
+.el-header i {
+  font-size: 20px;
+  color: #5f6368;
+  float: left;
+  margin-right: 420px;
+  margin-left: 50px;
+}
+.el-header i:hover {
+  color: #409eff;
 }
 </style>

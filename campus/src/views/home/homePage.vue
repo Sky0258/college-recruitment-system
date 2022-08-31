@@ -6,10 +6,24 @@
         <span class="left">高校招聘管理系统</span>
         <ul class="right">
           <li><a href="#top">主页</a></li>
-          <li><a href="#classify">分类</a></li>
+          <!-- <li><a href="#classify">分类</a></li> -->
           <li><a href="#Message">招聘信息</a></li>
-          <li><a href="#about">关于我们</a></li>
+          <!-- <li><a href="#about">关于我们</a></li> -->
+          <li><a href="http://localhost:10010/#/Like">收藏列表</a></li>
+          <li><a href="http://localhost:10010/#/apply">申请列表</a></li>
           <li><a href="http://localhost:10010/#/person">个人中心</a></li>
+          <li>
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content=" 点击注销登录 "
+              placement="bottom"
+            >
+             <el-button id="spe" round @click="close()"
+              >欢迎你,{{ this.selfInfo.name }}</el-button
+            >
+            </el-tooltip>
+          </li>
         </ul>
       </div>
       <!-- 主体搜索框 -->
@@ -17,9 +31,8 @@
         <h1>How Can We Help You?</h1>
         <h2>Search here to get the position you need</h2>
         <div class="search" id="classify">
-          <el-input placeholder="请输入内容" v-model="input">
-          </el-input>
-          <el-button type="primary" round @click="search">Search</el-button>
+          <el-input placeholder="请输入内容" v-model="input"> </el-input>
+          <el-button type="primary" round @click="search()">Search</el-button>
         </div>
       </div>
     </div>
@@ -28,67 +41,103 @@
       <div class="classify">
         <ul>
           <li class="left">
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon1.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon1.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">校外工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >校外工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>  
+            </div>
           </li>
           <li>
-            <img src="	https://html.spiderthemes-demos.com/docy/img/new/icon2.png"/>
+            <img
+              src="	https://html.spiderthemes-demos.com/docy/img/new/icon2.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">校内工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >校内工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon3.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon3.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">教学工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >教育工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li class="left">
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon4.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon4.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">宣传工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >销售工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon5.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon5.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">技术工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >技术工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon6.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon6.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">管理工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >管理工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li class="left bottom">
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon7.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon7.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">勤工俭学</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >勤工俭学</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li class="bottom">
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon8.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon8.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">写作工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >写作工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
           <li class="bottom">
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/icon9.png"/>
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/icon9.png"
+            />
             <div>
-              <el-button type="text" @click="seeMore($event)">志愿工作</el-button>
+              <el-button type="text" @click="seeMore($event)"
+                >志愿工作</el-button
+              >
               <span>200条相关信息</span>
-            </div>   
+            </div>
           </li>
         </ul>
       </div>
@@ -97,19 +146,126 @@
     <div class="three" id="Message">
       <h1>Recruitment Information Details</h1>
       <div class="message" v-for="item in info" :key="item.id">
-        <div class="msgLeft">
-          ID - {{item.id}}
-        </div>
+        <div class="msgLeft">ID - {{ item.id }}</div>
         <div class="msgRight">
-          <a href="#"><h2>{{item.pdepartment}} | {{item.pclassify}} | {{item.pname}}</h2></a>
-          <div>工作内容：{{item.presponsibility}}</div>
-          <div>工作要求：{{item.prequest}}</div>
-          <div>工作地点：{{item.workSite}}</div>
-          <el-button type="warning" icon="el-icon-star-off" circle size="small" id="star" plain></el-button>
-          <el-button type="primary" size="small" id="submit">立即投递</el-button>
-        </div>  
+          <el-button id="special" type="text" @click="show1(item)"
+            ><h2>
+              {{ item.pdepartment }} | {{ item.pclassify }} | {{ item.pname }}
+            </h2></el-button
+          >
+          <div>工作内容：{{ item.presponsibility }}</div>
+          <div>工作要求：{{ item.prequest }}</div>
+          <div>工作地点：{{ item.pworkSite }}</div>
+          <el-button
+            type="warning"
+            icon="el-icon-star-off"
+            size="small"
+            id="like"
+            @click="likeIt(item)"
+            >收藏</el-button
+          >
+          <el-button
+            type="primary"
+            size="small"
+            id="submit"
+            @click="apply(item.id)"
+            >立即投递</el-button
+          >
+        </div>
+        <el-dialog
+          title="招聘详情信息"
+          :visible.sync="dialogVisible"
+          width="40%"
+        >
+          <el-descriptions :column="1" size="large" :labelStyle="labelStyle">
+            <el-descriptions-item label="职位名称">{{
+              info1.pname
+            }}</el-descriptions-item>
+            <el-descriptions-item label="职位分类">{{
+              info1.pclassify
+            }}</el-descriptions-item>
+            <el-descriptions-item label="工作地点">{{
+              info1.pworkSite
+            }}</el-descriptions-item>
+            <el-descriptions-item label="工作要求">{{
+              info1.prequest
+            }}</el-descriptions-item>
+            <el-descriptions-item label="工作部门">{{
+              info1.pdepartment
+            }}</el-descriptions-item>
+            <el-descriptions-item label="工作描述">{{
+              info1.pdescribe
+            }}</el-descriptions-item>
+            <el-descriptions-item label="工作职责">{{
+              info1.presponsibility
+            }}</el-descriptions-item>
+          </el-descriptions>
+        </el-dialog>
+        <el-dialog
+          title="提交工作申请"
+          :visible.sync="infoDialogVisible"
+          width="40%"
+        >
+          <el-form
+            :model="ruleForm1"
+            ref="ruleForm1"
+            label-width="80px"
+            class="demo-ruleForm"
+            hide-required-asterisk
+          >
+            <el-form-item
+              label="用户名"
+              prop="username"
+              :rules="{
+                required: true,
+                message: '用户名不能为空',
+                trigger: 'blur',
+              }"
+            >
+              <el-input v-model="ruleForm1.username"></el-input>
+            </el-form-item>
+            <el-form-item
+              label="电子邮箱"
+              prop="email"
+              :rules="[
+                {
+                  required: true,
+                  message: '请输入邮箱地址',
+                  trigger: 'blur',
+                },
+                {
+                  type: 'email',
+                  message: '请输入正确的邮箱地址',
+                  trigger: ['blur', 'change'],
+                },
+              ]"
+            >
+              <el-input v-model="ruleForm1.email"></el-input>
+            </el-form-item>
+            <el-form-item
+              label="手机号码"
+              prop="phone"
+              :rules="{
+                required: true,
+                message: '手机号码不能为空',
+                trigger: 'blur',
+              }"
+            >
+              <el-input v-model="ruleForm1.phone"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('ruleForm1')"
+                >提交申请</el-button
+              >
+              <el-button @click="resetForm('ruleForm1')">重置</el-button>
+              <el-button @click="infoDialogVisible = false">取 消</el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
       </div>
-      <el-button type="text" id="msgBtn" @click="showMore()">点击查看更多 ></el-button>
+      <el-button type="text" id="msgBtn" @click="showMore()"
+        >点击查看更多 ></el-button
+      >
     </div>
     <!-- 底部信息栏 -->
     <div class="four" id="about">
@@ -121,19 +277,31 @@
         <ul>
           <li class="title">Solution</li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/smile2.png" alt="">
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/smile2.png"
+              alt=""
+            />
             <span>Help Docs</span>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/doc2.png" alt="">
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/doc2.png"
+              alt=""
+            />
             <span>Docbuzz</span>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/house2.png" alt="">
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/house2.png"
+              alt=""
+            />
             <span>User Frontend</span>
           </li>
           <li>
-            <img src="https://html.spiderthemes-demos.com/docy/img/new/bag2.png" alt="">
+            <img
+              src="https://html.spiderthemes-demos.com/docy/img/new/bag2.png"
+              alt=""
+            />
             <span>Lightbox</span>
           </li>
         </ul>
@@ -162,63 +330,166 @@ export default {
   data() {
     return {
       input: "",
-      info:[{
-        "id": 5,
-        "workSite": "东华学车",
-        "flag": 2,
-        "pdescribe": "发传单",
-        "pdepartment": "校内",
-        "presponsibility": "发完所分配的传单，并向同学们介绍公司的优惠",
-        "pclassify": "销售",
-        "prequest": "有耐心，认真",
-        "pname": "东华学车宣传员"
-      }
-      ]
+      info: [
+        {
+          id: "1",
+          pworkSite: "",
+          flag: "",
+          pdescribe: "",
+          pdepartment: "",
+          presponsibility: "",
+          pclassify: "",
+          prequest: "",
+          pname: "",
+        },
+      ],
+      info1: {
+        id: "",
+        pworkSite: "",
+        flag: "",
+        pdescribe: "",
+        pdepartment: "",
+        presponsibility: "",
+        pclassify: "",
+        prequest: "",
+        pname: "",
+      },
+      ruleForm1: {
+        email: "",
+        phone: "",
+        pid: "",
+        username: "",
+      },
+      cur: "",
+      labelStyle: { width: "60px" },
+      dialogVisible: false,
+      infoDialogVisible: false,
+      workId: "",
     };
   },
-  created() {
-    // this.getMenuList();
+  mounted() {
     this.showAllPosition();
     this.info = this.allPosition;
+    this.getSelfInfo();
   },
   methods: {
-    search() {
+    getSelfInfo() {
       this.$store
-        .dispatch("contentSearch", this.input)
+        .dispatch("getSelfInfo")
         .then(() => {
+          this.ruleForm = this.selfInfo;
         })
         .catch(() => {
-          this.$message.error('错误！');
+          this.$message.error("错误！");
+        });
+    },
+    search() {
+      console.log("12121212121");
+      console.log(this.input);
+      this.$store
+        .dispatch("contentSearch", {
+          pClassify: this.input,
+        })
+        .then(() => {
+          this.$router.push("/searchRes");
+        })
+        .catch(() => {
+          this.$message.error("错误！");
         });
     },
     showAllPosition() {
       this.$store
-        .dispatch("showAllPosition",{
+        .dispatch("showAllPosition", {
           page: 1,
-          size: 4
+          size: 4,
         })
-        .then(() => {
-        })
+        .then(() => {})
         .catch(() => {
-          this.$message.error('错误！');
+          this.$message.error("错误！");
         });
     },
-    seeMore(event){
-      let val = event.currentTarget.innerHTML.match(/(<span>=?)(\S*)(?=<\/span>)/)[2];
+    seeMore(event) {
+      let val = event.currentTarget.innerHTML.match(
+        /(<span>=?)(\S*)(?=<\/span>)/
+      )[2];
+      console.log(val.substr(0, 2));
       this.$store
-        .dispatch("contentSearch", val)
+        .dispatch("contentSearch", {
+          pClassify: val.substr(0, 2),
+        })
         .then(() => {
+          this.$router.push("/searchRes");
         })
         .catch(() => {
-          this.$message.error('错误！');
+          this.$message.error("错误！");
+        });
+    },
+    showMore() {
+      this.$router.push("/result");
+    },
+    show1(item) {
+      // console.log(item);
+      this.info1 = item;
+      this.cur = item.id;
+      console.log(this.info1);
+      this.dialogVisible = true;
+    },
+    close1() {
+      this.dialogVisible = false;
+    },
+    apply(workId) {
+      this.infoDialogVisible = true;
+      this.ruleForm1.pid = workId;
+    },
+    resetForm(formName) {
+      this.$refs[formName][0].resetFields();
+    },
+    submitForm(formName) {
+      this.$refs[formName][0].validate((valid) => {
+        if (valid) {
+          this.$store
+            .dispatch("addWork", this.ruleForm1)
+            .then(() => {
+              this.$message({
+                message: "申请成功！",
+                type: "success",
+              });
+              this.infoDialogVisible = false;
+            })
+            .catch(() => {
+              this.$message.error("错误！");
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
       });
     },
-    showMore(){
-      this.$router.push("/result");
+    likeIt(item) {
+      this.$store
+        .dispatch("addLike", {
+          pid: item.id,
+        })
+        .then(() => {
+          this.$message({
+            message: "收藏成功！",
+            type: "success",
+          });
+        })
+        .catch(() => {
+          this.$message.error("错误！");
+        });
+    },
+    close() {
+      this.$message({
+            message: "注销成功！",
+            type: "success",
+          });
+       this.$router.push("/login");
     }
   },
   computed: {
-    ...mapGetters(["allPosition"]),
+    ...mapGetters(["allPosition", "selfInfo"]),
   },
 };
 </script>
@@ -276,6 +547,7 @@ a {
 }
 .header .right {
   justify-content: right;
+  margin-right: 0;
 }
 .header .right a {
   display: block;
@@ -287,7 +559,14 @@ a {
   border-bottom: 2px solid white;
   transition: all 0.2s ease-out 0s;
 }
-
+.header .right #spe {
+  color: #4c4cf1;
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  margin-top: 25px;
+  margin-right: 35px;
+}
 
 /* 主体搜索框 */
 .one .main h1 {
@@ -307,7 +586,7 @@ a {
   margin-top: 1rem;
   margin: 0;
 }
-.main >>> .el-input{
+.main >>> .el-input {
   width: 46%;
   margin: 0 0 0 20rem;
 }
@@ -348,7 +627,6 @@ a {
   top: -20%;
   left: 6%;
   box-shadow: 0 30px 60px 0 rgb(2 2 48 / 8%);
-
 }
 .two ul {
   width: 100%;
@@ -436,10 +714,13 @@ a {
   letter-spacing: 1px;
   width: 640px;
 }
-.three .message a{
+.three .message #special {
   color: #232361;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
-.three .message a:hover {
+.three .message #special:hover {
   color: #4c4cf1;
 }
 .three .msgRight h2 {
@@ -454,11 +735,11 @@ a {
   width: 610px;
   margin-top: 6px;
   text-align: left;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-.three  .msgRight >>> #submit {
+.three .msgRight >>> #submit {
   float: right;
   margin-right: 20px;
 }
@@ -467,12 +748,19 @@ a {
   float: right;
   /* background-color: red; */
 }
-.three #msgBtn{
+.three #msgBtn {
   color: #4c4cf1;
   font-weight: 550;
   font-size: 16px;
   margin-right: -720px;
   margin-top: 10px;
+}
+.three .message >>> .el-dialog__wrapper {
+  transition-duration: 0.3s;
+}
+.three #like {
+  float: right;
+  margin-right: 15px;
 }
 
 /* 底部栏目 */
@@ -520,7 +808,7 @@ a {
   height: 20px;
   /* margin-top: 15px; */
 }
-.footerRight  ul span {
+.footerRight ul span {
   margin: 0;
   color: #6c7688;
 }

@@ -14,6 +14,9 @@ import award from '../views/person/award.vue'
 import level from '../views/person/level.vue'
 import project from '../views/person/project.vue'
 import upload from '../views/person/upload.vue'
+import searchRes from '../views/main/searchRes.vue'
+import Like from '../views/main/Like.vue'
+import apply from '../views/main/apply.vue'
 
 //重写push和replace 
 let originPush = VueRouter.prototype.push;
@@ -50,6 +53,18 @@ export default new VueRouter({
             component: register
         },
         {
+            path: "/searchRes",
+            component: searchRes
+        },
+        {
+            path: "/Like",
+            component: Like
+        },
+        {
+            path: "/apply",
+            component: apply
+        },
+        {
             path: "/person",
             component: person,
             children: [{
@@ -84,7 +99,7 @@ export default new VueRouter({
         },
         {
             path: "*",
-            redirect: "/homePage"
+            redirect: "/login"
         }
     ]
 })

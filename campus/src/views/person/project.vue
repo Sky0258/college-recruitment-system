@@ -73,10 +73,10 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')"
+          <el-button type="primary" @click="submitForm('ruleForm1')"
             >确 定</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="resetForm('ruleForm1')">重置</el-button>
           <el-button @click="infoDialogVisible = false">取 消</el-button>
         </el-form-item>
       </el-form>
@@ -115,14 +115,6 @@ export default {
   data() {
     return {
       msg: [
-        {
-          describes: "string",
-          fromTime: "string",
-          id: 0,
-          projectName: "string",
-          toTime: "string",
-          userId: 0,
-        },
       ],
       contentStyle: {
         "font-size": "14px",
@@ -141,6 +133,9 @@ export default {
         awTime: "",
       },
     };
+  },
+  mounted() {
+    this.showProject1();
   },
   methods: {
     showProject1() {

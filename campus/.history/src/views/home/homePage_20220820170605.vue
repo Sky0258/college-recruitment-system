@@ -1,0 +1,55 @@
+<template>
+  <div class="contain">
+    <div class="box">
+      <div class="header">
+        <ul>
+          <li>主页</li>
+          <li></li>
+          <li></li>
+          <li>关于我们</li>
+        </ul>
+      </div>
+    </div>
+    <div class="two">
+      <h2>11111111111111122222222</h2>
+    </div>
+  </div>
+  
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style scoped>
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+* {
+  margin: 0 auto;
+  padding: 0;
+}
+.box {
+  width: 100vw;
+  height: 100vh;
+  background: url("./images/背景图2.png");
+  background-size: 100% 100%;
+  /* position: fixed; */
+  /* min-width: 100%;
+  min-height: 100%; */
+  /* background-attachment: fixed; */
+}
+.one {
+  width: 100%;
+  height: 300px;
+}
+h2 {
+  /* color: white; */
+}
+
+</style>

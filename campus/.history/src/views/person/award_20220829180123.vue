@@ -1,0 +1,47 @@
+<template>
+  <div>
+    <div v-for="item in this.msg" :key="item.id">
+      <el-descriptions class="margin-top" :column="1" size="large">
+        <el-descriptions-item label="获奖名称"
+          >{{this.msg.award}}</el-descriptions-item
+        >
+        <el-descriptions-item label="主办单位"
+          >{{this.msg.awDepartment}}</el-descriptions-item
+        >
+        <el-descriptions-item label="获奖时间">{{this.msg.awTime}}</el-descriptions-item>
+        <template>
+          <el-button type="primary" size="small">操作</el-button>
+        </template>
+      </el-descriptions>
+      <div><el-button type="primary" size="small">操作</el-button></div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      msg: [
+        {
+          id: 1,
+          userId: 1,
+          awDepartment: null,
+          award: "没获过奖",
+          awTime: null,
+        },
+        {
+          id: 4,
+          userId: 1,
+          awDepartment: "东莞理工",
+          award: "蓝桥杯省赛二等奖",
+          awTime: "大二",
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style>
+</style>

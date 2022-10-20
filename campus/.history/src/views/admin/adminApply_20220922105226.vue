@@ -53,6 +53,7 @@
       title="申请人学历信息"
       :visible.sync="dialogVisible1"
       width="60%"
+      :before-close="handleClose"
     >
       <el-table :data="tableData1" style="width: 100%">
         <el-table-column
@@ -79,6 +80,7 @@
       title="申请人获奖情况"
       :visible.sync="dialogVisible2"
       width="60%"
+      :before-close="handleClose"
     >
       <el-table :data="tableData2" style="width: 100%">
         <el-table-column prop="award" label="获奖名称" align="center">
@@ -93,6 +95,7 @@
       title="申请人项目经历"
       :visible.sync="dialogVisible3"
       width="60%"
+      :before-close="handleClose"
     >
       <el-table :data="tableData3" style="width: 100%">
         <el-table-column
@@ -147,9 +150,7 @@ export default {
       this.$store
         .dispatch("applyPos")
         .then(() => {
-          this.resL = this.applyPos.records;
-          console.log(this.resL);
-          this.loading = false;
+          this.resL = this.applyPos;
           // for (let item in this.applyPos) {
           //   this.$store
           //     .dispatch("showIdProject", {

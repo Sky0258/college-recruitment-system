@@ -203,7 +203,7 @@ export default {
     likeIt(item) {
       this.$store
         .dispatch("addLike",{
-          pid: item.id
+          id: item.id
         })
         .then(() => {
           this.$message({
@@ -228,7 +228,7 @@ export default {
         .then(() => {
           this.$store
             .dispatch("deleteLike", {
-              id: pid
+              pid: pid
             })
             .then(() => {
               this.$message({
